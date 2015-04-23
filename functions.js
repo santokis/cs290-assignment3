@@ -13,7 +13,9 @@
 */
 
 //your code here
-
+function uselessFunction(){
+  return null;
+}
 //end your code
 
 var bar = 'not a function';
@@ -30,7 +32,16 @@ var barType = typeof bar;
 */
 
 //your code here
-
+var bar = anonymousFunction(doubleArray){
+  for(var i = 0; i < doubleArray.length; i++){
+    if(isNaN(doubleArray[i])){
+      return false;
+    }
+    else{
+      doubleArray[i] = doubleArray[i] * 2;
+    }
+  }
+}
 //end your code
 
 /**
@@ -66,5 +77,17 @@ function GitLog(hash, date, message) {
 */
 
 //your code here
-
+function parseGit(logArray){
+  var GitArray = [];
+  for(var i = 0; i < logArray.length; i++){
+    var commitMessage = logArray[i].split(' ');
+    var commitDateString = commitMessage[1] + ' ' + commitMessage[2] + ' ' + commitMessage[3] + ' ' + commitMessage[4] + ' ' + commitMessage[5] + ' ' + commitMessage[6];
+    var commitDate = new Date(Date.parse(commitDateString));
+    var commitHash = commitMessage[0];
+    var commitMessage = logArray[i].split('"')[1];
+    var commitGitLog = new GitLog(commitHash, commitDate, commitMessage);
+    GitArray.push(commitGitLog);
+  }
+  return GitArray;
+}
 //end your code
