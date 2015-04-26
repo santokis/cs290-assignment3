@@ -14,7 +14,7 @@ function variableModification(a) {
   var yourNumberIs;
   //your code here
   plus5 = 5 + a;
-  asString = string(a);
+  asString = a.toString();
   yourNumberIs = 'Your Number is ' + a;
   //end your code
   return [plus5, asString, yourNumberIs, a];
@@ -46,7 +46,7 @@ return true if c is null, false otherwise
 */
 function isNull(c) {
   //your code here
-  if(c == null){
+  if(c === null){
     return true;
   }
   else{

@@ -32,16 +32,17 @@ var barType = typeof bar;
 */
 
 //your code here
-var bar = anonymousFunction(doubleArray){
+var bar = function(doubleArray){
   for(var i = 0; i < doubleArray.length; i++){
-    if(isNaN(doubleArray[i])){
-      return false;
+    if(!isNaN(doubleArray[i])){
+      doubleArray[i] = doubleArray[i] * 2.0;
     }
     else{
-      doubleArray[i] = doubleArray[i] * 2;
+      return false;
     }
   }
-}
+  return doubleArray;
+};
 //end your code
 
 /**
@@ -55,7 +56,7 @@ function GitLog(hash, date, message) {
     this.hash = hash;
     this.date = date;
     this.message = message;
-}
+};
 
 /**
 * Create a function called parseGit to parse Git commit logs
@@ -77,17 +78,17 @@ function GitLog(hash, date, message) {
 */
 
 //your code here
-function parseGit(logArray){
-  var GitArray = [];
+var parseGit = function(logArray){
+  var gitLogArray = [];
+  var temp, hash, str, message, date;
   for(var i = 0; i < logArray.length; i++){
-    var commitMessage = logArray[i].split(' ');
-    var commitDateString = commitMessage[1] + ' ' + commitMessage[2] + ' ' + commitMessage[3] + ' ' + commitMessage[4] + ' ' + commitMessage[5] + ' ' + commitMessage[6];
-    var commitDate = new Date(Date.parse(commitDateString));
-    var commitHash = commitMessage[0];
-    var commitMessage = logArray[i].split('"')[1];
-    var commitGitLog = new GitLog(commitHash, commitDate, commitMessage);
-    GitArray.push(commitGitLog);
+    temp = logArray[i];
+    hash = temp.substr(0, temp.indexOf(' '));
+    message = temp.substring(temp.indexOf('"') + 1, temp.length - 1);
+    dateString = temp.substring(temp.indexOf(' '), temp.indexOf('"'));
+    date = new Date(dateString);
+    gitLogArray[i] = new GitLog(hash, date, message);
   }
-  return GitArray;
-}
+  return gitLogArray;
+};
 //end your code

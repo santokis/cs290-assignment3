@@ -8,12 +8,12 @@
 * @return {object} - the object literal
 */
 
-function returnObjectLiteral() {
-  //your code here
+function returnObjectLiteral(){
+//your code here
   return{
     type: 'Goldfish', brand: 'Pepperidge Farm', flavor: 'Cheddar', count: 2000
   };
-  //end your code
+//end your code
 }
 
 /**
@@ -41,20 +41,20 @@ function returnObjectLiteral() {
 
 //your code here
 function MessageLog(user){
+  this.user = user;
   this.sent = 0;
   this.received = 0;
   this.sentlog = [];
   this.receivedlog = [];
-  this.user = user;
-  this.logMessage(messageText, direction){
-    if(direction == 0){
+  this.logMessage = function(messageText, direction){
+    if(direction === 0){
       this.sent = this.sent + 1;
       this.sentlog.unshift([messageText, direction]);
       if(this.sentlog.length > 5){
         this.sentlog = this.sentlog.slice(0, 5);
       }
     }
-    else if(direction == 1){
+    else if(direction === 1){
       this.received = this.received + 1;
       this.receivedlog.unshift([messageText, direction]);
       if(this.receivedlog.length > 5){
@@ -62,9 +62,15 @@ function MessageLog(user){
       }
     }
   };
-  this.getSentMessage = function(n){return this.sentlog[n][0];};
-  this.totalSent = function(){return this.sent;};
-  this.totalReceived = function(){return this.received;};
+  this.totalSent = function(){
+    return this.sent;
+  };
+  this.totalReceived = function(){
+    return this.received;
+  };
+  this.getSentMessage = function(n){
+    return this.sentlog[n][0];
+  };
 }
 //end your code
 
@@ -72,6 +78,7 @@ function MessageLog(user){
 * Add a method to the MessageLog prototype:
 * lastReceivedMessage() - returns the message text of the last message the user
 * received.
+* @return {string}
 */
 //your code here
 MessageLog.prototype.lastReceivedMessage = function(){
